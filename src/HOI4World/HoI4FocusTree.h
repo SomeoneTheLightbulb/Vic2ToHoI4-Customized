@@ -7,7 +7,7 @@
 #include "external/common_items/Date.h"
 #include "src/HOI4World/Diplomacy/HoI4AIStrategy.h"
 #include "src/HOI4World/Events/Events.h"
-#include "src/HOI4World/OnActions.h"
+#include "src/HOI4World/OnActions/OnActions.h"
 #include "src/HOI4World/States/HoI4State.h"
 #include <memory>
 #include <set>
@@ -119,7 +119,7 @@ class HoI4FocusTree: commonItems::parser
 	[[nodiscard]] bool isEmpty() const { return emptyFocusTree; }
 
 	std::pair<int, int> calculateBranchSpan(const std::vector<std::shared_ptr<HoI4Focus>>& focuses);
-	void addBranch(const std::vector<std::shared_ptr<HoI4Focus>>& adjustedFocuses, HoI4::OnActions& onActions);
+	void addBranch(const std::vector<std::shared_ptr<HoI4Focus>>& adjustedFocuses);
 
   private:
 	void confirmLoadedFocuses();

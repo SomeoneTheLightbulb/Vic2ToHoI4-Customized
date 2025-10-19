@@ -1,0 +1,115 @@
+SOV_is_exiles = {
+	#custom_trigger_tooltip = {
+		#tooltip = SOV_is_exiles_tt
+		#SOV = { has_completed_focus = SOV_beaten_but_not_defeated }
+	#}
+}
+
+SOV_is_left_opposition = {
+	#custom_trigger_tooltip = {
+		#tooltip = SOV_is_left_opposition_tt
+		#SOV = { has_completed_focus = SOV_the_left_opposition }
+	#}
+}
+
+SOV_is_right_opposition = {
+	#custom_trigger_tooltip = {
+		#tooltip = SOV_is_right_opposition_tt
+		#SOV = { has_completed_focus = SOV_the_right_opposition }
+	#}
+}
+
+SOV_is_opposition = {
+	custom_trigger_tooltip = {
+		tooltip = SOV_is_opposition_tt
+		OR = {
+			SOV_is_left_opposition = yes 
+			SOV_is_right_opposition = yes 
+			SOV_is_exiles = yes 
+		}
+	}
+}
+
+SOV_is_stalinist = {
+	has_completed_focus = SOV_the_centre
+}
+
+SOV_character_can_be_purged = {
+	NOT = { has_character_flag = SOV_safe_from_purge_flag }
+	NOT = { has_character_flag = SOV_exiled_flag }
+	NOT = { has_character_flag = SOV_character_purged_flag }
+}
+
+SOV_propaganda_poster_slot_available = {
+	custom_trigger_tooltip = {
+		tooltip = SOV_propaganda_poster_slot_available_tt
+		OR = {
+			check_variable = { SOV_poster_left_icon_frame = SOV_propaganda_empty_slot_index }
+			check_variable = { SOV_poster_center_icon_frame = SOV_propaganda_empty_slot_index }
+			check_variable = { SOV_poster_right_icon_frame = SOV_propaganda_empty_slot_index }
+		}
+	}
+}
+
+SOV_paranoia_is_medium_level = {
+	custom_trigger_tooltip = {
+		tooltip = SOV_paranoia_is_medium_level_tt
+		AND = {
+			check_variable = { SOV_paranoia = SOV_paranoia_lower_threshold compare = greater_than_or_equals }
+			check_variable = { SOV_paranoia = SOV_paranoia_higher_threshold compare = less_than }
+		}
+	}
+}
+
+SOV_paranoia_is_high_level = {
+	custom_trigger_tooltip = {
+		tooltip = SOV_paranoia_is_high_level_tt
+		check_variable = { SOV_paranoia = SOV_paranoia_higher_threshold compare = greater_than_or_equals }
+	}
+}
+
+SOV_paranoia_is_finishing_purge_focus = {
+	OR = {
+		AND = {
+			NOT = { has_completed_focus = SOV_the_zinovyevite_terrorist_center }
+			focus_progress = {
+				focus = SOV_the_zinovyevite_terrorist_center
+				progress > 0.5
+			}
+		}
+		AND = {
+			NOT = { has_completed_focus = SOV_the_anti_soviet_trotskyist_center }
+			focus_progress = {
+				focus = SOV_the_anti_soviet_trotskyist_center
+				progress > 0.5
+			}
+		}
+		AND = {
+			NOT = { has_completed_focus = SOV_the_military_conspiracy }
+			focus_progress = {
+				focus = SOV_the_military_conspiracy
+				progress > 0.5
+			}
+		}
+		AND = {
+			NOT = { has_completed_focus = SOV_the_bloc_of_rights_and_trotskyites }
+			focus_progress = {
+				focus = SOV_the_bloc_of_rights_and_trotskyites
+				progress > 0.5
+			}
+		}
+	}
+}
+
+SOV_is_going_historical_stalinist = { # Add/Change stuff here instead of doing it in 2243987238472854294 places, tack så mycket
+	has_completed_focus = SOV_the_centre	
+}
+
+SOV_propaganda_victory_at_hand_available = { #Basically Great Patriotic War is ongoing
+	custom_trigger_tooltip = {
+		tooltip = SOV_propaganda_victory_at_hand_available_tt
+		has_country_flag = SOV_third_five_year_plan_locked_flag
+		NOT = { has_country_flag = SOV_fourth_five_year_plan_available_flag }
+	}
+}
+

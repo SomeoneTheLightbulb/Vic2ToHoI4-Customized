@@ -117,6 +117,8 @@ set(HOI4WORLD_MODIFIERS_SOURCES ${HOI4WORLD_MODIFIERS_SOURCES} "${PROJECT_SOURCE
 file(GLOB HOI4WORLD_NAMES_SOURCES "${PROJECT_SOURCE_DIR}/src/HOI4World/Names/*.cpp")
 file(GLOB HOI4WORLD_NAVIES_SOURCES "${PROJECT_SOURCE_DIR}/src/HOI4World/Navies/*.cpp")
 file(GLOB HOI4WORLD_OCCUPATION_LAWS_SOURCES "${PROJECT_SOURCE_DIR}/src/HOI4World/OccupationLaws/*.cpp")
+set(HOI4WORLD_ON_ACTIONS_SOURCES ${HOI4WORLD_ON_ACTIONS_SOURCES} "${PROJECT_SOURCE_DIR}/src/HOI4World/OnActions/OnActions.cpp")
+set(HOI4WORLD_ON_ACTIONS_SOURCES ${HOI4WORLD_ON_ACTIONS_SOURCES} "${PROJECT_SOURCE_DIR}/src/HOI4World/OnActions/OnActionsFactory.cpp")
 file(GLOB HOI4WORLD_OPERATIONS_SOURCES "${PROJECT_SOURCE_DIR}/src/HOI4World/Operations/*.cpp")
 file(GLOB HOI4WORLD_OPERATIVE_NAMES_SOURCES "${PROJECT_SOURCE_DIR}/src/HOI4World/OperativeNames/*.cpp")
 set(HOI4WORLD_PEACECONFERENCES_SOURCES ${HOI4WORLD_PEACECONFERENCES_SOURCES} "${PROJECT_SOURCE_DIR}/src/HOI4World/PeaceConferences/DynamicAiPeaces.cpp")
@@ -438,6 +440,7 @@ list(APPEND ALL_HOI4_FILES
 	${HOI4WORLD_NAMES_SOURCES}
 	${HOI4WORLD_NAVIES_SOURCES}
 	${HOI4WORLD_OCCUPATION_LAWS_SOURCES}
+	${HOI4WORLD_ON_ACTIONS_SOURCES}
 	${HOI4WORLD_OPERATIONS_SOURCES}
 	${HOI4WORLD_OPERATIVE_NAMES_SOURCES}
 	${HOI4WORLD_PEACECONFERENCES_SOURCES}
@@ -479,11 +482,6 @@ configure_file("${DATA_FILE_DIR}/FAQ.txt" "${CONVERTER_OUTPUT_DIRECTORY}/../FAQ.
 configure_file("${DATA_FILE_DIR}/license.txt" "${CONVERTER_OUTPUT_DIRECTORY}/../license.txt" COPYONLY)
 configure_file("${DATA_FILE_DIR}/ReadMe.txt" "${CONVERTER_OUTPUT_DIRECTORY}/../ReadMe.txt" COPYONLY)
 configure_file("${DATA_FILE_DIR}/version.txt" "${CONVERTER_OUTPUT_DIRECTORY}/../version.txt" COPYONLY)
-configure_file("${DATA_FILE_DIR}/configurables/AdjustedFocusBranches/FRA_begin_rearmament.txt" "${CONVERTER_OUTPUT_DIRECTORY}/Configurables/AdjustedFocusBranches/FRA_begin_rearmament.txt" COPYONLY)
-configure_file("${DATA_FILE_DIR}/configurables/AdjustedFocusBranches/FRA_begin_rearmament_characters.txt" "${CONVERTER_OUTPUT_DIRECTORY}/Configurables/AdjustedFocusBranches/FRA_begin_rearmament_characters.txt" COPYONLY)
-configure_file("${DATA_FILE_DIR}/configurables/AdjustedFocusBranches/FRA_begin_rearmament_ideas.txt" "${CONVERTER_OUTPUT_DIRECTORY}/Configurables/AdjustedFocusBranches/FRA_begin_rearmament_ideas.txt" COPYONLY)
-configure_file("${DATA_FILE_DIR}/configurables/AdjustedFocusBranches/uk_colonial_focus.txt" "${CONVERTER_OUTPUT_DIRECTORY}/Configurables/AdjustedFocusBranches/uk_colonial_focus.txt" COPYONLY)
-configure_file("${DATA_FILE_DIR}/configurables/AdjustedFocusBranches/uk_colonial_focus_ideas.txt" "${CONVERTER_OUTPUT_DIRECTORY}/Configurables/AdjustedFocusBranches/uk_colonial_focus_ideas.txt" COPYONLY)
 configure_file("${DATA_FILE_DIR}/configurables/CodenamesOperatives/arabic_operative_codenames.txt" "${CONVERTER_OUTPUT_DIRECTORY}/Configurables/CodenamesOperatives/arabic_operative_codenames.txt" COPYONLY)
 configure_file("${DATA_FILE_DIR}/configurables/CodenamesOperatives/CZE_operative_codenames.txt" "${CONVERTER_OUTPUT_DIRECTORY}/Configurables/CodenamesOperatives/CZE_operative_codenames.txt" COPYONLY)
 configure_file("${DATA_FILE_DIR}/configurables/CodenamesOperatives/ENG_operative_codenames.txt" "${CONVERTER_OUTPUT_DIRECTORY}/Configurables/CodenamesOperatives/ENG_operative_codenames.txt" COPYONLY)
@@ -513,6 +511,7 @@ configure_file("${DATA_FILE_DIR}/configurables/CountryGrammar.txt" "${CONVERTER_
 configure_file("${DATA_FILE_DIR}/configurables/CountryNamesMappings.txt" "${CONVERTER_OUTPUT_DIRECTORY}/Configurables/CountryNamesMappings.txt" COPYONLY)
 configure_file("${DATA_FILE_DIR}/configurables/country_mappings.txt" "${CONVERTER_OUTPUT_DIRECTORY}/Configurables/country_mappings.txt" COPYONLY)
 configure_file("${DATA_FILE_DIR}/configurables/cultureGroupToGraphics.txt" "${CONVERTER_OUTPUT_DIRECTORY}/Configurables/cultureGroupToGraphics.txt" COPYONLY)
+configure_file("${DATA_FILE_DIR}/configurables/Divergences of Darkness_province_mappings.txt" "${CONVERTER_OUTPUT_DIRECTORY}/Configurables/Divergences of Darkness_province_mappings.txt" COPYONLY)
 configure_file("${DATA_FILE_DIR}/configurables/FlagsToIdeasMappings.txt" "${CONVERTER_OUTPUT_DIRECTORY}/Configurables/FlagsToIdeasMappings.txt" COPYONLY)
 configure_file("${DATA_FILE_DIR}/configurables/foreignInfluenceDecisions.txt" "${CONVERTER_OUTPUT_DIRECTORY}/Configurables/foreignInfluenceDecisions.txt" COPYONLY)
 configure_file("${DATA_FILE_DIR}/configurables/GovernmentMappings.txt" "${CONVERTER_OUTPUT_DIRECTORY}/Configurables/GovernmentMappings.txt" COPYONLY)
@@ -701,6 +700,7 @@ set(HOI4WORLD_NAVIES_TESTS_SOURCES ${HOI4WORLD_NAVIES_TESTS_SOURCES} "${PROJECT_
 set(HOI4WORLD_OCCUPATION_LAWS_TESTS_SOURCES ${HOI4WORLD_OCCUPATION_LAWS_TESTS_SOURCES} "${PROJECT_SOURCE_DIR}/src/HOI4World/OccupationLaws/OccupationLawFactoryTests.cpp")
 set(HOI4WORLD_OCCUPATION_LAWS_TESTS_SOURCES ${HOI4WORLD_OCCUPATION_LAWS_TESTS_SOURCES} "${PROJECT_SOURCE_DIR}/src/HOI4World/OccupationLaws/OccupationLawsFactoryTests.cpp")
 set(HOI4WORLD_OCCUPATION_LAWS_TESTS_SOURCES ${HOI4WORLD_OCCUPATION_LAWS_TESTS_SOURCES} "${PROJECT_SOURCE_DIR}/src/HOI4World/OccupationLaws/OccupationLawsTests.cpp")
+set(HOI4WORLD_ON_ACTIONS_TEST_SOURCES ${HOI4WORLD_ON_ACTIONS_TEST_SOURCES} "${PROJECT_SOURCE_DIR}/src/HOI4World/OnActions/OnActionsFactoryTests.cpp")
 set(HOI4WORLD_OPERATIONS_TESTS_SOURCES ${HOI4WORLD_OPERATIONS_TESTS_SOURCES} "${PROJECT_SOURCE_DIR}/src/HOI4World/Operations/OperationFactoryTests.cpp")
 set(HOI4WORLD_OPERATIONS_TESTS_SOURCES ${HOI4WORLD_OPERATIONS_TESTS_SOURCES} "${PROJECT_SOURCE_DIR}/src/HOI4World/Operations/OperationsFactoryTests.cpp")
 set(HOI4WORLD_OPERATIVE_NAMES_TESTS_SOURCES ${HOI4WORLD_OPERATIVE_NAMES_TESTS_SOURCES} "${PROJECT_SOURCE_DIR}/src/HOI4World/OperativeNames/OperativeNamesMappingFactoryTests.cpp")
@@ -862,6 +862,7 @@ add_executable(
 	${HOI4WORLD_NAMES_TESTS_SOURCES}
 	${HOI4WORLD_NAVIES_TESTS_SOURCES}
 	${HOI4WORLD_OCCUPATION_LAWS_TESTS_SOURCES}
+	${HOI4WORLD_ON_ACTIONS_TEST_SOURCES}
 	${HOI4WORLD_OPERATIONS_TESTS_SOURCES}
 	${HOI4WORLD_OPERATIVE_NAMES_TESTS_SOURCES}
 	${HOI4WORLD_PEACECONFERENCES_TESTS_SOURCES}
@@ -947,6 +948,7 @@ configure_file("data/test_files/GameRulesEmpty.txt" "${TEST_OUTPUT_DIRECTORY}/Ga
 configure_file("data/test_files/generic_opertive_codenames.txt" "${TEST_OUTPUT_DIRECTORY}/common/units/codenames_operatives/generic_opertive_codenames.txt" COPYONLY)
 configure_file("data/test_files/HoI4Files/Characters/ImportCharacters.txt" "${TEST_OUTPUT_DIRECTORY}/Configurables/ImportCharacters.txt" COPYONLY)
 configure_file("data/test_files/HoI4Files/CountryCategories/CountryGrammar.txt" "${TEST_OUTPUT_DIRECTORY}/Configurables/CountryGrammar.txt" COPYONLY)
+configure_file("data/test_files/HoI4Files/OnActions/ImportOnActions.txt" "${TEST_OUTPUT_DIRECTORY}/Configurables/ImportOnActions.txt" COPYONLY)
 configure_file("data/test_files/hoi4" "${TEST_OUTPUT_DIRECTORY}/HoI4Linux/hoi4" COPYONLY)
 configure_file("data/test_files/hoi4.exe" "${TEST_OUTPUT_DIRECTORY}/HoI4Windows/hoi4.exe" COPYONLY)
 configure_file("data/test_files/IntelligenceAgencyLogos.txt" "${TEST_OUTPUT_DIRECTORY}/Configurables/IntelligenceAgencyLogos.txt" COPYONLY)
@@ -1132,6 +1134,7 @@ add_library(run_clang_tidy
 	${HOI4WORLD_NAMES_SOURCES}
 	${HOI4WORLD_NAVIES_SOURCES}
 	${HOI4WORLD_OCCUPATION_LAWS_SOURCES}
+	${HOI4WORLD_ON_ACTIONS_SOURCES}
 	${HOI4WORLD_OPERATIONS_SOURCES}
 	${HOI4WORLD_OPERATIVE_NAMES_SOURCES}
 	${HOI4WORLD_PEACECONFERENCES_SOURCES}
@@ -1235,6 +1238,7 @@ add_library(run_clang_tidy
 	${HOI4WORLD_NAMES_TESTS_SOURCES}
 	${HOI4WORLD_NAVIES_TESTS_SOURCES}
 	${HOI4WORLD_OCCUPATION_LAWS_TESTS_SOURCES}
+	${HOI4WORLD_ON_ACTIONS_TEST_SOURCES}
 	${HOI4WORLD_OPERATIONS_TESTS_SOURCES}
 	${HOI4WORLD_OPERATIVE_NAMES_TESTS_SOURCES}
 	${HOI4WORLD_PEACECONFERENCES_TESTS_SOURCES}

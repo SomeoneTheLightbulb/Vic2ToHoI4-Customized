@@ -1668,13 +1668,38 @@ void HoI4::Country::addAdjustedBranch(const std::shared_ptr<HoI4::AdjustedBranch
 {
 	if (nationalFocus)
 	{
-		nationalFocus->addBranch(theBranch->getFocusTree().getFocuses(), onActions);
+		nationalFocus->addBranch(theBranch->getFocusTree().getFocuses());
 	}
 
 	addGlobalEventTarget(theBranch->getName() + "_" + originalTag);
-	for (const auto& character: theBranch->getCharacters() | std::views::values)
+
+	HoI4::Character::Factory characterFactory;
+	for (auto character: theBranch->getModifiableCharacters() | std::views::values)
 	{
+		const auto& portrait_location =
+			 armyPortraits[std::uniform_int_distribution<int>{0, static_cast<int>(armyPortraits.size() - 1)}(generator)];
+		characterFactory.customizeCharacterPortraits(character, portrait_location);
+
+		if (character.getCountryLeaderData().has_value())
+		{
+			character.promote();
+		}
 		addCharacter(character);
+	}
+
+	onActions.addFocusEvent(tag, theBranch->getName());
+	for (const auto& [key, effects]: theBranch->getOnActions())
+	{
+		if (key.ends_with(originalTag))
+		{
+			std::string newKey = key.substr(0, key.size() - originalTag.size()) + tag;
+			onActions.addOnAction(std::move(newKey), effects);
+		}
+		else
+		{
+			// to allow non-tag-specific on_actions from imported file
+			onActions.addOnAction(key, effects);
+		}
 	}
 }
 
